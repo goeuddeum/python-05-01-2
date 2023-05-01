@@ -1,0 +1,42 @@
+b2:0.879702
+x1,x2,x3=0.02,0.05,0.12
+w1,w2,w3=0.15,0.2,0.02
+w4,w5,w6=0.27,0.37,0.52
+b1,b2=0.12,0.39
+y1T,y2T=0.02,0.98
+lr=0.01
+for epoch in range(200):
+    y1=x1*w1+x2*w3+x3*w3+1*b1
+    y2=x1*w4+x2*w5+x3*w6+1*b2
+    E=((y1-y1T)**2+(y2-y2T)**2)/2
+    y1E=y1-y1T
+    y2E=y2-y2T
+    w1E=y1E*x1
+    w2E=y1E*x2
+    w3E=y1E*x3
+    b1E=y1E*1
+    w4E=y2E*x1
+    w5E=y2E*x1
+    w6E=y2E*x1
+    b2E=y2E*1
+    w1=w1-lr*w1E
+    w2=w2-lr*w2E
+    w3=w3-lr*w3E
+    b1=b1-lr*b1E
+    w4=w4-lr*w4E
+    w5=w5-lr*w5E
+    w6=w6=lr*w6E
+    b2=b2-lr*b2E
+    print(f'epoch={epoch}')
+    print(f'y1:{y1:3f}')
+    print(f'y2:{y2:3f}')
+    print(f'w1:{w1:3f}')
+    print(f'w2:{w2:3f}')
+    print(f'w3:{w3:3f}')
+    print(f'b1:{b1:3f}')
+    print(f'w4:{w4:3f}')
+    print(f'w5:{w5:3f}')
+    print(f'w6:{w6:3f}')
+    print(f'b2:{b2:3f}')
+    if E<0.0000001:
+        break
